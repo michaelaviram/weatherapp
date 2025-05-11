@@ -35,6 +35,8 @@ jobs:
     
     - name: push to gitops repo
       run: |
+        git config user.name ${{ github.actor }}
+        git config user.email "michael.aviram@gmail.com"
         git add weatherapp/values.yaml
         git commit -m "changed version"
         git push https://github.com/michaelaviram/argocd
