@@ -24,7 +24,8 @@ jobs:
         tags: michaelaviram/app:${{ github.run_number }}
 
     - name: checkout gitops repo
-      with: actions/checkout@v4
+      uses: actions/checkout@v4
+      with:
         repository: michaelaviram/argocd
     
     - name: Update version in repo
