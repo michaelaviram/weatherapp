@@ -27,13 +27,11 @@ jobs:
       uses: actions/checkout@v4
       with:
         repository: michaelaviram/argocd
-        sparse-checkout: |
-          weatherapp/values.yaml
     
     - name: Update version in repo
       uses: mikefarah/yq@master
       with:
-        cmd: yq -i '.deployment.image = "michaelaviram/app:${{ github.run_number }}"' 'values.yaml'
+        cmd: yq -i '.deployment.image = "michaelaviram/app:${{ github.run_number }}"' 'weatherapp/values.yaml'
 
     
 
