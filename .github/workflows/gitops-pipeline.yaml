@@ -21,7 +21,7 @@ jobs:
       with:
         context: .
         push: true
-        tags: michaelaviram/app:${{ github.run.number }}
+        tags: michaelaviram/app:${{ github.run_number }}
 
     - name: deploy to gitops repo
       uses: actions/checkout@v4
