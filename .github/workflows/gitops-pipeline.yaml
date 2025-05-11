@@ -4,8 +4,6 @@ on:
   push:
     branches: [ "main" ]
 
-CURRENT_VERSION: 'v1.0.0'
-
 jobs:
   build: 
     runs-on: ubuntu-latest
