@@ -29,6 +29,7 @@ jobs:
       uses: actions/checkout@v4
       with:
         repository: michaelaviram/argocd
+        token: ${{ secrets.ACCESS_TOKEN }}
     
     - name: Update version in repo
       uses: mikefarah/yq@master
