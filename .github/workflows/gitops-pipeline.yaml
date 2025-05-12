@@ -25,22 +25,20 @@ jobs:
         push: true
         tags: michaelaviram/app:${{ github.run_number }}
 
-    - name: checkout gitops repo
+    - name: Checkout GitOps Repo
       uses: actions/checkout@v4
       with:
         repository: michaelaviram/argocd
         token: ${{ secrets.ACCESS_TOKEN }}
     
-    - name: Update version in repo
-      uses: mikefarah/yq@master
-      with:
-        cmd: yq -i '.deployment.image = "michaelaviram/app:${{ github.run_number }}"' 'weatherapp/values.yaml'
+    - name: Update Image Version
+      run: |
+        yq -i '.deployment.image = "michaelaviram/app:${{ github.run_number }}"' 'weatherapp/values.yaml'
     
-    - name: push to gitops repo
+    - name: Push to gitOps Repo
       run: |
         git config user.name michaelaviram
-        git config user.email michael.aviram@gmail.com
-        #git remote set-url origin https://x-access-token:${{ secrets.ACCESS_TOKEN }}@github.com/michaelaviram/argocd
+        git config user.email <my email>
         git add weatherapp/values.yaml
         git commit -m "changed version"
         git push       
