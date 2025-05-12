@@ -39,7 +39,7 @@ jobs:
       run: |
         git config user.name michaelaviram
         git config user.email michael.aviram@gmail.com
-        #git remote set-url origin https://x-access-token:${{ secrets.ACCESS_TOKEN }}@github.com/michaelaviram/argocd
+        git remote set-url origin https://x-access-token:${{ secrets.ACCESS_TOKEN }}@github.com/michaelaviram/argocd
         git add weatherapp/values.yaml
         git commit -m "changed version"
         git push https://github.com/michaelaviram/argocd
