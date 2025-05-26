@@ -16,7 +16,21 @@ jobs:
           command: |
             echo "$GITLAB_PAT" | docker login "$GITLAB_REGISTRY" -u "$GITLAB_USERNAME" --password-stdin
             docker push $GITLAB_REGISTRY/$GITLAB_GROUP/$GITLAB_PROJECT
+
+  checkov:
+    docker:
+      - image: bridgecrew/checkov:latest
+    steps:
+      - run:
+          name: Install Checkov
+          command: pip install -U checkov
+
+      - run: 
+          name: Run Checkov
+          command: checkov --directory ./eks_tf/
+
 workflows:
   chaos-workflow:
     jobs:
       - build-and-test
+      - checkov
