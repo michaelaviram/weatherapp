@@ -10,12 +10,12 @@ jobs:
           docker_layer_caching: true
       - run:
           name: "Build Docker Image"
-          command: "docker build -t registry.gitlab.com/michaelaviram-group/michaelaviram-project ."
+          command: "docker build -t $GITLAB_REGISTRY/$GITLAB_GROUP/$GITLAB_PROJECT ."
       - run:
           name: Push image
           command: |
-            echo "$GITLAB_PAT" | docker login "registry.gitlab.com" -u "michaelaviram" --password-stdin
-            docker push registry.gitlab.com/michaelaviram-group/michaelaviram-project
+            echo "$GITLAB_PAT" | docker login "$GITLAB_REGISTRY" -u "$GITLAB_USERNAME" --password-stdin
+            docker push $GITLAB_REGISTRY/$GITLAB_GROUP/$GITLAB_PROJECT
 workflows:
   chaos-workflow:
     jobs:
