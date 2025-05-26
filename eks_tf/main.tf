@@ -5,6 +5,7 @@ provider "aws" {
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
   version = "~> 20.31"
+  source = "git::https://github.com/terraform-aws-modules/terraform-aws-eks.git?ref=207d73fbaa5eebe6e98b94e95b83fd0a5a13c307"
 
   cluster_name    = var.cluster_name
   cluster_version = var.cluster_version
