@@ -1,16 +1,16 @@
 version: 2.1
 jobs:
   build-image:
-   docker:
-     - image: cimg/base:current
-   steps:
+    docker:
+      - image: cimg/base:current
+    steps:
       - checkout
       - setup_remote_docker:
           docker_layer_caching: true
       - run:
           name: "Build Docker Image"
-          command: "docker build -t michaelaviram/test"
+          command: "docker build -t michaelaviram/test ."
 workflows:
-  chaos-workflow: 
-  jobs:
+  chaos-workflow:
+    jobs:
       - build-image
