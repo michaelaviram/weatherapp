@@ -1,4 +1,8 @@
 version: 2.1
+
+orbs:
+  trivy-orb: fifteen5/trivy-orb@1.0.0
+
 jobs:
   build-image:
     docker:
@@ -10,14 +14,9 @@ jobs:
       - run:
           name: "Build Docker Image"
           command: "docker build -t michaelaviram/test ."
-      - run:
-          name: Install Trivy
-          command: |
-            apk add --update-cache --upgrade curl
-            curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin
-      - run:
-          name: Scan image with trivy
-          command: trivy --exit-code 0 --no-progress michaelaviram/test
+      - trivy/scan:
+          args: "--no-progress --exit-code 1 image michaelaviram/test"
+
 workflows:
   chaos-workflow:
     jobs:
