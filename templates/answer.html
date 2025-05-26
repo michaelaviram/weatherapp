@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>results</title>
+</head>
+<style>
+h1 {text-align: center;}
+</style>
+    <body>
+    <h1>Forecast for {{ location }}</h1>
+    <h3>Country: {{ country }}</h2>
+        <div>
+            <table style="width:100%", border="1">
+                <tr> 
+                    <td>Date</td>
+                    <td>Day Temperature</td>
+                    <td>Night Temperature</td>
+                    <td>Average Humidity</td>
+                </tr>
+                {% for i in range(7) %}
+                <tr>
+                    <td>{{ days[i].date }}</td>
+                    <td>{{ days[i].day_temp }} 	°C</td>
+                    <td>{{ days[i].night_temp }} °C</td>
+                    <td>{{ days[i].humidity }} %</td>
+                </tr>
+                {% endfor %} 
+            </table>
+        <form action="/dynamo" method="POST">
+            <button type="submit">Save data to data base</button>
+        </form> 
+        <form action="/download" method="GET">
+        <button type="submit">Download a picture of {{ location }}'s sky</button>
+    </form>
+    <form action="/history" method="GET">
+        <button type="submit">Go to search history</button>
+    </form>
+
+
+    </body>
+</html>
+
+                    

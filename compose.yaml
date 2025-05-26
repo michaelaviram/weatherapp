@@ -1,0 +1,11 @@
+services:
+  webapp:
+    container_name: webapp
+    image: michaelaviram/app
+    environment:
+      BG_COLOR: "green"
+    ports:
+      - 8989:8989
+
+      
+

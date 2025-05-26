@@ -1,0 +1,22 @@
+<!-- templates/history.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>history</title>
+</head>
+<center>
+<body>
+<h1>Search History</h1>
+<h1>
+        {% for file in files %}
+        <li>
+        {{ file }} -
+        <a href="{{ url_for('download_file', filename=file) }}">Download</a>
+        </li>
+        {% endfor %}
+    </h1>
+         </body>
+</center>
+
