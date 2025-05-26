@@ -21,6 +21,7 @@ jobs:
     docker:
       - image: bridgecrew/checkov:latest
     steps:
+      - checkout
       - run:
           name: Install Checkov
           command: pip install -U checkov
