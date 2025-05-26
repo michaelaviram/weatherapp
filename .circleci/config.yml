@@ -9,8 +9,8 @@ jobs:
           docker_layer_caching: true
       - run:
           name: "Build Docker Image"
-          command: "docker build -t michaelaviram/test"
+          command: "docker build -t michaelaviram/test ."
 workflows:
   chaos-workflow: 
   jobs:
-      - build-image
+    - build-image
