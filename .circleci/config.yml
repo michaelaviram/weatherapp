@@ -4,7 +4,7 @@ orbs:
   trivy-orb: fifteen5/trivy-orb@1.0.0
 
 jobs:
-  build-image:
+  build-and-test:
     docker:
       - image: cimg/base:current
     steps:
@@ -20,4 +20,4 @@ jobs:
 workflows:
   chaos-workflow:
     jobs:
-      - build-image
+      - build-and-test
