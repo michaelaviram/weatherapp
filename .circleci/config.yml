@@ -1,8 +1,5 @@
 version: 2.1
 
-orbs:
-  trivy-orb: fifteen5/trivy-orb@1.0.0
-
 jobs:
   build-and-test:
     docker:
@@ -13,10 +10,12 @@ jobs:
           docker_layer_caching: true
       - run:
           name: "Build Docker Image"
-          command: "docker build -t michaelaviram/test ."
-      - trivy/scan:
-          args: "--no-progress --exit-code 1 image michaelaviram/test"
-
+          command: "docker build -t registry.gitlab.com/michaelaviram-group/michaelaviram-project ."
+      - run:
+          name: Push image
+          command: |
+            echo "$GITLAB_PAT" | docker login "registry.gitlab.com" -u "michaelaviram" --password-stdin
+            docker push registry.gitlab.com/michaelaviram-group/michaelaviram-project
 workflows:
   chaos-workflow:
     jobs:
