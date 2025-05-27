@@ -4,7 +4,7 @@ jobs:
   
   test:
     docker:
-      - image: cimg/python:current
+      - image: cimg/python:3.9.22
     steps:
       - checkout
       - run: |
