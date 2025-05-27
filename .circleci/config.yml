@@ -7,12 +7,29 @@ jobs:
       - image: cimg/python:3.9.22
     steps:
       - checkout
-      - run: |
-          pip install -r requirements.txt
-          cd testing/
-          pytest test_weather_unit.py
-          pytest test_weather_integration.py
-
+      - run:
+          name: test
+          command: |
+            pip install -r requirements.txt
+            cd testing/
+            pytest test_weather_unit.py
+            pytest test_weather_integration.py
+      - run:
+          name: Notify Discord on Success
+          when: on_success
+          command: |
+            curl -H "Content-Type: application/json" \
+                 -X POST \
+                 -d '{"content": "Testing Succeeded!"}' \
+                 $DISCORD_WEBHOOK
+      - run:
+          name: Notify Discord on Success
+          when: on_fail
+          command: |
+            curl -H "Content-Type: application/json" \
+                 -X POST \
+                 -d '{"content": "Testing Failed!"}' \
+                 $DISCORD_WEBHOOK
 
   build:
     docker:
