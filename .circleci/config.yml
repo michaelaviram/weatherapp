@@ -1,7 +1,18 @@
 version: 2.1
 
 jobs:
-  build-and-test:
+  
+  test:
+    docker:
+      - image: cimg/python:current
+    steps:
+      - checkout
+      - run: |
+          pip install -U pytest
+          pytest ./testing/
+
+
+  build:
     docker:
       - image: cimg/base:current
     steps:
@@ -33,5 +44,8 @@ jobs:
 workflows:
   chaos-workflow:
     jobs:
-      - build-and-test
+      - test
+      - build:
+          requires: 
+            - test
       - checkov
