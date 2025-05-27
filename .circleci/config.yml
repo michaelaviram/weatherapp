@@ -9,8 +9,9 @@ jobs:
       - checkout
       - run: |
           pip install -r requirements.txt
-          pytest ./testing/test_weather_unit.py
-          pytest ./testubg/test_weather_integration.py
+          cd testing/
+          pytest test_weather_unit.py
+          pytest test_weather_integration.py
 
 
   build:
