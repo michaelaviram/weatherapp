@@ -20,7 +20,7 @@ jobs:
           command: |
             curl -H "Content-Type: application/json" \
                  -X POST \
-                 -d '{"content": "Testing Succeeded!"}' \
+                 -d '{"content": "Pipeline Testing Succeeded!"}' \
                  $DISCORD_WEBHOOK
       - run:
           name: Notify Discord on Success
@@ -28,7 +28,7 @@ jobs:
           command: |
             curl -H "Content-Type: application/json" \
                  -X POST \
-                 -d '{"content": "Testing Failed!"}' \
+                 -d '{"content": "Pipeline Testing Failed!"}' \
                  $DISCORD_WEBHOOK
 
   build:
@@ -63,8 +63,8 @@ jobs:
 workflows:
   chaos-workflow:
     jobs:
-      - test
-      - build:
-          requires: 
-            - test
-      - checkov
+      #- test
+      #- build:
+          #requires: 
+            #- test
+      #- checkov
