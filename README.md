@@ -1,6 +1,9 @@
 # Weather forcast
 
-### This application recives a location from the user and returns for cast for the next week.
+## Overview
+
+This application recives a location from the user and returns for cast for the next week.
+
 Each days contain the following data:
 - Date    
 - Day Temperature    
@@ -8,9 +11,17 @@ Each days contain the following data:
 - Average humidity    
 
 ## Installation
+
+### venv 
  
 ```bash
 pip install -r requirements.txt
+```
+
+### docker
+
+```bash
+docker build .
 ```
 
 ## Testing
@@ -36,11 +47,21 @@ to test only integration:
 pytest test_weather_integration.py
 ```
 
-## Exection
+## Execution
 
-To run the app:
+### venv
+
 ```bash
 python3 app.py
 ```
 the click on the below link:
-http://127.0.0.1:5000
+http://127.0.0.1:8989
+
+### docker 
+```bash
+docker run -p 8989:8989 -d <image_name>
+```
+the click on the below link:
+http://127.0.0.1:8989
+
+
