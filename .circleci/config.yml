@@ -1,5 +1,8 @@
 version: 2.1
 
+orbs:
+  aws-cli: circleci/aws-cli@5.1
+
 jobs:
   
   test:
@@ -23,7 +26,7 @@ jobs:
                  -d '{"content": "Pipeline Testing Succeeded!"}' \
                  $DISCORD_WEBHOOK
       - run:
-          name: Notify Discord on Success
+          name: Notify Discord on Fail
           when: on_fail
           command: |
             curl -H "Content-Type: application/json" \
@@ -63,8 +66,9 @@ jobs:
 workflows:
   chaos-workflow:
     jobs:
-      #- test
-      #- build:
-          #requires: 
-            #- test
-      #- checkov
+      - test
+      - build:
+          requires: 
+            - test
+      - checkov
+   
