@@ -1,7 +1,7 @@
 #Reviewed by Bronia
 
 import os
-from flask import Flask, Response, request, render_template, send_file, send_from_directory, url_for
+from flask import Flask, Response, redirect, request, render_template, send_file, send_from_directory, url_for
 from io import BytesIO
 from prometheus_client import generate_latest, CONTENT_TYPE_LATEST, Counter
 from datetime import datetime
@@ -42,10 +42,20 @@ def home():
             app.logger.error("searched location that does not exist")
             return render_template("home.html", error="Location does not exist!")
 
+        return redirect(url_for("answer"))
+
+    return render_template("home.html", BG_COLOR=BG_COLOR)
+
+
+@app.route("/answer", methods =["GET"])
+def answer():
+    try:
         return render_template(
                 "answer.html", location=location, country=country, days=days)
 
-    return render_template("home.html", BG_COLOR=BG_COLOR)
+    except Exception as e:
+        return render_template("home.html", error=f"{e}")
+
 
 @app.route("/dynamo", methods = ["POST"])
 def dynamo():
