@@ -1,4 +1,3 @@
-# Reviewed by Bronia
 from datetime import datetime
 from json import load
 from os import remove

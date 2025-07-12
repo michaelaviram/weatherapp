@@ -2,13 +2,9 @@
 
 ## Overview
 
-This application recives a location from the user and returns for cast for the next week.
+This simpple application recives a location from the user and returns forecast for the next week.
 
-Each days contain the following data:
-- Date    
-- Day Temperature    
-- Night Temperature    
-- Average humidity    
+It is meant to run inside a kubernetes cluster, alongside a MySQL db to which it writes data.
 
 ## Installation
 

@@ -27,13 +27,7 @@ h1 {text-align: center;}
                 </tr>
                 {% endfor %} 
             </table>
-        <form action="/dynamo" method="POST">
-            <button type="submit">Save data to data base</button>
-        </form> 
-        <form action="/download" method="GET">
-        <button type="submit">Download a picture of {{ location }}'s sky</button>
-    </form>
-    <form action="/history" method="GET">
+   <form action="/history" method="GET">
         <button type="submit">Go to search history</button>
     </form>
 
