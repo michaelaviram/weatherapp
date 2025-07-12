@@ -1,0 +1,7 @@
+Flask
+requests
+pytest
+gunicorn
+pylint
+prometheus_client
+mysql-connector-python

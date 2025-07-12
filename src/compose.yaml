@@ -1,7 +1,7 @@
 services:
   webapp:
     container_name: webapp
-    image: michaelaviram/app
+    image: michaelaviram/weatherapp
     environment:
       BG_COLOR: "green"
     ports:
